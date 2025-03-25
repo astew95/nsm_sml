@@ -33,11 +33,11 @@ We consider a physical simulation $\mathcal{P}$ that steps the system $\mathbf{x
 $\hat{\mathcal{P}}$, acting on a system described by $\mathbf{y}=\mathcal{T}\mathbf{x}$, where $\mathcal{T}$ is a suitable mapping from $\mathbf{x}$ to $\mathbf{y}$. In the simplest case (e.g. we have the same number of particles with the same parameters and same time step sizes), $\mathcal{T}$ can be the identity function. $\mathcal{T}$ is introduced to model a mapping between the outputs of $\mathcal{S}$ and $\hat{\mathcal{S}}$, where for example $\mathbf{y}$ might be represented on a grid, whereas $\mathbf{x}$ might be discredited on particles. A loss function $\mathcal{L} \in \mathbb{R}^+_0$ quantifies the discrepancy between $\mathbf{x}_t$ and $\mathbf{y}_t$, the states at time $t$.
 
 Simulating the system from an initial state $\mathbf{x}_0$ until time $t$ is given by 
-$\mathbf{x}_t = \mathcal{P}\circ\mathcal{P}\ldots\mathcal{P}(x_0) = \mathcal{P}^t(x_0)$, 
+$$\mathbf{x}_t = \mathcal{P}\circ\mathcal{P}\ldots\mathcal{P}(x_0) = \mathcal{P}^t(x_0)$$, 
 and 
-$\mathbf{y}_t = \hat{\mathcal{P}} \circ \hat{\mathcal{P}} \ldots \hat{\mathcal{P}}(y_0)) = \hat{\mathcal{P}}^t(y_0)$. 
+$$\mathbf{y}_t = \hat{\mathcal{P}} \circ \hat{\mathcal{P}} \ldots \hat{\mathcal{P}}(y_0)) = \hat{\mathcal{P}}^t(y_0)$$. 
 
-Similar to \citet{um2020solver-in-the-loop}, we propose to learn a correction function $\mathcal{C}$ to be applied at each step of our simulator $\mathcal{S}$, bringing each $\mathbf{x}_t$ closer $\mathbf{y}_t$.
+We propose to learn a correction function $\mathcal{C}$ to be applied at each step of our simulator $\mathcal{S}$, bringing each $\mathbf{x}_t$ closer $\mathbf{y}_t$.
 
 We would like to minimize the loss $\mathcal{L}$ at each time step $t$. Considering a squared $L_2$ loss, this means minimizing
 
@@ -46,3 +46,5 @@ $$
     \hat{\mathcal{P}}^t(\mathcal{T}\mathbf{x}_0) - (\mathcal{C}\mathcal{P})^t(\mathbf{x}_0)
 ||_2^2.
 $$
+
+Paper Reference: https://arxiv.org/abs/2007.00016 (Solver-In-The-Loop)
