@@ -22,7 +22,7 @@ the field of astrophysical fluid simulations an exciting domain for such solutio
 
 For our methodology, we utilize an SPH simulation code as outlined in the paper. The simulation code initializes the star as a random collection of points within the star's radius and evolves the points based on an equation of state, SPH density calculation, and artificial viscosity. Using this code, our goal is to make a less precise, but faster solver by bringing it closer to a more precise (but slower) solver. In our case, we use our main simulation as a ground truth. We then run a lower-fidelity version of the NS simulation by reducing the physical accuracy of the involved equations, while keeping the simulation near stability to avoid major divergence. Within the update step of the simulation, we apply a correction term at each time step.  During inference time, we iteratively step the solver forward in time, as usual, but at each time step, we query a neural network (NN) for the correction term, which updates the star point values for the low-fidelity run. 
 
-![image](sph.png){width=200 height=200}
+<img src="sph.png" width=200 height=200>
 
 ## NN Archutecture 
 
@@ -40,9 +40,9 @@ Simulating the system from an initial state $\mathbf{x}_0$ until time $t$ is giv
 
 $$\mathbf{x}_t = \mathcal{P}\circ\mathcal{P}\ldots\mathcal{P}(x_0) = \mathcal{P}^t(x_0)$$
 
-and 
+and
 
-$$\mathbf{y}_t = \hat{\mathcal{P}} \circ \hat{\mathcal{P}} \ldots \hat{\mathcal{P}}(y_0)) = \hat{\mathcal{P}}^t(y_0)$$. 
+$$\mathbf{y}_t = \hat{\mathcal{P}} \circ \hat{\mathcal{P}} \ldots \hat{\mathcal{P}}(y_0)) = \hat{\mathcal{P}}^t(y_0)$$
 
 We propose to learn a correction function $\mathcal{C}$ to be applied at each step of our simulator $\mathcal{S}$, bringing each $\mathbf{x}_t$ closer $\mathbf{y}_t$.
 
