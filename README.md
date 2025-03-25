@@ -50,7 +50,5 @@ $$
 ||_2^2.
 $$
 
-Paper Reference: https://arxiv.org/abs/2007.00016 (Solver-In-The-Loop)
-
 
 ![image](model_correction.png)
