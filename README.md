@@ -22,13 +22,14 @@ the field of astrophysical fluid simulations an exciting domain for such solutio
 
 For our methodology, we utilize an SPH simulation code as outlined in the paper. The simulation code initializes the star as a random collection of points within the star's radius and evolves the points based on an equation of state, SPH density calculation, and artificial viscosity. Using this code, our goal is to make a less precise, but faster solver by bringing it closer to a more precise (but slower) solver. In our case, we use our main simulation as a ground truth. We then run a lower-fidelity version of the NS simulation by reducing the physical accuracy of the involved equations, while keeping the simulation near stability to avoid major divergence. Within the update step of the simulation, we apply a correction term at each time step.  During inference time, we iteratively step the solver forward in time, as usual, but at each time step, we query a neural network (NN) for the correction term, which updates the star point values for the low-fidelity run. 
 
-![image](sph.png)
+![image](sph.png){width=200 height=200}
 
 ## NN Archutecture 
 
 For the NN architecture, we first consider a basic multilayer perceptron (MLP) architecture. The correction term induced by the NN in the lower-fidelity simulation can be thought of as acting against the error that was incurred by the finite-dimensional representation. Conceptually, it is implemented in the system the same way as external forces and thus could be thought of as a virtual force imposed by the neural net. The virtual force is a learned force and exactly represents the difference between the ground truth (high-fidelity, slow solver) and the low-fidelity data with reduced physical accuracy. Thus, if we can conceptualize the deviations between the low-fidelity solver and the ground truth, we can understand the physical significance of our correction term. For more details about the specific physics involved in the low-fidelity solver, see section \ref{datamodel} on Data \& Modeling.
 
-![image](hi_low_fidelity_density_values.png)
+
+![image](model_correction.png)
 
 # General Modeling
 
@@ -53,5 +54,5 @@ $$
 ||_2^2.
 $$
 
+![image](hi_low_fidelity_density_values.png)
 
-![image](model_correction.png)
