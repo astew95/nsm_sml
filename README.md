@@ -12,9 +12,9 @@ time), but also an opportunity to make our simulation more efficient, and even l
 governing equations.
 We highlight that despite a general interest in machine learning techniques for astrophysical simulations, they
 remain underutilized in the astrophysics community when considering incorperating physically-informed machine-
-learningnetworksforsimulatingthedynamicsofhowstarsareformed. Webelievethattheabundanceofsimulated
+learning networks for simulating the dynamics of compact objects. We believe that the abundance of simulated
 and observed data, paired with a limited understanding of the governing equations behind such processes makes
-the field of astrophysical fluid simulations an exciting domain for such solutions.
+the field of fluid simulations of compact objects an exciting domain for such solutions.
 
 # SPH Data & NN Architecture
 
